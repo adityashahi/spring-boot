@@ -13,33 +13,34 @@ import com.rjdb.rjdbauth.model.Topic;
 import com.rjdb.rjdbauth.service.TopicService;
 
 @RestController
+@RequestMapping("/v1")
 public class TopicsController {
 	
 	@Autowired
-	private TopicService topicService;
+	private TopicService topicServiceImpl;
 	
 	@RequestMapping("/topics")
 	public List<Topic> getAllTopics() {
-		return topicService.getAllTopics();
+		return topicServiceImpl.getAllTopics();
 		}
 	@RequestMapping("/topics/{id}")
 	public Topic getTopic(@PathVariable String id) {
-		return topicService.getTopic(id);
+		return topicServiceImpl.getTopic(id);
 	}
 	
 //	@PostMapping("/topics")
 	@RequestMapping(method=RequestMethod.POST, value="/topics")
 	public void addTopic(@RequestBody Topic topic) {
-		topicService.addTopic(topic);
+		topicServiceImpl.addTopic(topic);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/topics/{id}")
 	public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {
-		topicService.updateTopic(id, topic);
+		topicServiceImpl.updateTopic(id, topic);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/topics/{id}")
 	public void deleteTopic(@PathVariable String id) {
-		topicService.deleteTopic(id);
+		topicServiceImpl.deleteTopic(id);
 	}
 }

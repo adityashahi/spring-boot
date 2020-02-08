@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rjdb.rjdbauth.model.Course;
 import com.rjdb.rjdbauth.model.Topic;
 import com.rjdb.rjdbauth.service.CourseService;
-import com.rjdb.rjdbauth.service.TopicService;
+import com.rjdb.rjdbauth.service.TopicServiceImpl;
 
 @RestController
+@RequestMapping("/v1")
 public class CourseController {
 	
 	@Autowired
@@ -26,23 +27,24 @@ public class CourseController {
 		}
 	
 	@RequestMapping("/course/{id}")
-	public Course getTopic(@PathVariable String id) {
+	public Course getCourse(@PathVariable String id) {
 		return courseService.getCourse(id);
+		
 	}
 	
 //	@PostMapping("/topics")
 	@RequestMapping(method=RequestMethod.POST, value="/course")
-	public void addTopic(@RequestBody Course course) {
+	public void addCourse(@RequestBody Course course) {
 		courseService.addCourse(course);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/course/{id}")
-	public void updateTopic(@RequestBody Course course, @PathVariable String id) {
+	public void updateCourse(@RequestBody Course course, @PathVariable String id) {
 		courseService.updateCourse(id, course);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/course/{id}")
-	public void deleteTopic(@PathVariable String id) {
+	public void deleteCourse(@PathVariable String id) {
 		courseService.deleteCourse(id);
 	}
 }
