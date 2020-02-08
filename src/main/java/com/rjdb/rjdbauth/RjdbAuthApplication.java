@@ -32,9 +32,9 @@ public class RjdbAuthApplication {
 	}
 	
 	private ApiInfo apiDetails() {
-		ApiInfoBuilder hkjkh = new ApiInfoBuilder().title("this swaggetr").version("2.1");
+		ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder().title("Topic and Course Rest API").contact(new springfox.documentation.service.Contact("Aditya", "http://pat4less.com", "aditya@anwisys.com")).version("1.0");
 		
-		return hkjkh.build();
+		return apiInfoBuilder.build();
 	}
 
 }
