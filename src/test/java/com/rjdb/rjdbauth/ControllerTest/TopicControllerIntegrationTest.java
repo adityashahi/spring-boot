@@ -20,9 +20,7 @@ import com.rjdb.rjdbauth.service.TopicServiceImpl;
 
 import static org.mockito.Mockito.when;
 import static org.hamcrest.CoreMatchers.is;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -42,15 +40,15 @@ public class TopicControllerIntegrationTest {
 	public void givenTopic_whenGetTopics_thenReturnJsonArray()
 	  throws Exception {
 	     
-	    Topic alex = new Topic("alex","topicNew","greate description of alex");
+	    Topic topic = new Topic("alex","topicNew","greate description of alex");
 	 
-	    List<Topic> allTopics = Arrays.asList(alex);
+	    List<Topic> allTopics = Arrays.asList(topic);
 	 
 	    when(topicService.getAllTopics()).thenReturn(allTopics);
 	 
-	    mvc.perform(get("/topics")
+	    mvc.perform(get("/v1/topics")
 	      .contentType(MediaType.APPLICATION_JSON))
 	      .andExpect(status().isOk())
-	      .andExpect(jsonPath("$[0].id", is(alex.getId())));
+	      .andExpect(jsonPath("$[0].id", is(topic.getId())));
 	}
 }

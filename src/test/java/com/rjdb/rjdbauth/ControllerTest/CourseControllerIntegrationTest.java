@@ -45,7 +45,7 @@ public class CourseControllerIntegrationTest {
     	Topic topic = new Topic("id", "java", "description of java topic");
     	repository.save(topic);
     	
-    	mvc.perform(get("/topics")
+    	mvc.perform(get("/v1/topics")
           .contentType(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk())
           .andExpect(content()
