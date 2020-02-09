@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rjdb.rjdbauth.model.Topic;
-import com.rjdb.rjdbauth.service.TopicService;
+import com.rjdb.rjdbauth.service.TopicServiceImpl;
 
 @RestController
 @RequestMapping("/v1")
 public class TopicsController {
 	
 	@Autowired
-	private TopicService topicServiceImpl;
+	private TopicServiceImpl topicServiceImpl;
 	
 	@RequestMapping("/topics")
 	public List<Topic> getAllTopics() {
@@ -28,7 +28,6 @@ public class TopicsController {
 		return topicServiceImpl.getTopic(id);
 	}
 	
-//	@PostMapping("/topics")
 	@RequestMapping(method=RequestMethod.POST, value="/topics")
 	public void addTopic(@RequestBody Topic topic) {
 		topicServiceImpl.addTopic(topic);

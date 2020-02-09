@@ -11,39 +11,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rjdb.rjdbauth.model.Course;
 import com.rjdb.rjdbauth.model.Topic;
-import com.rjdb.rjdbauth.service.CourseService;
-import com.rjdb.rjdbauth.service.TopicServiceImpl;
+import com.rjdb.rjdbauth.service.CourseServiceImpl;
 
 @RestController
 @RequestMapping("/v1")
 public class CourseController {
-	
 	@Autowired
-	private CourseService courseService;
-	
-	@RequestMapping("/course")
-	public List<Course> getAllCourses() {
+	private CourseServiceImpl courseService;
+
+	@RequestMapping("/topics/{id}/courses")
+	public List<Course> getAllCourses(@PathVariable String id) {
 		return courseService.getAllCourses();
-		}
-	
-	@RequestMapping("/course/{id}")
+	}
+
+	@RequestMapping("/topic/{topicId}/courses/{id}")
 	public Course getCourse(@PathVariable String id) {
 		return courseService.getCourse(id);
-		
 	}
-	
-//	@PostMapping("/topics")
-	@RequestMapping(method=RequestMethod.POST, value="/course")
-	public void addCourse(@RequestBody Course course) {
+
+	@RequestMapping(method = RequestMethod.POST, value = "/topics/{topicId}/courses")
+	public void addCourse(@RequestBody Course course, @PathVariable String topicId) {
+		course.setTopic(new Topic(topicId,"",""));
 		courseService.addCourse(course);
 	}
-	
-	@RequestMapping(method=RequestMethod.PUT, value="/course/{id}")
-	public void updateCourse(@RequestBody Course course, @PathVariable String id) {
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/topics/{topicId}/course/{id}")
+	public void updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
+		course.setTopic(new Topic(topicId, "", ""));
 		courseService.updateCourse(id, course);
 	}
-	
-	@RequestMapping(method=RequestMethod.DELETE, value="/course/{id}")
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "/topics/{topicId}/course/{id}")
 	public void deleteCourse(@PathVariable String id) {
 		courseService.deleteCourse(id);
 	}
