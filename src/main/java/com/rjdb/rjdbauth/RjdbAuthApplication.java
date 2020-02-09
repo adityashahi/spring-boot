@@ -24,7 +24,7 @@ public class RjdbAuthApplication {
 	public Docket swaggerConfiguration() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.paths(PathSelectors.ant("/v1/*"))
+				.paths(PathSelectors.ant("/v1/**"))
 				.apis(RequestHandlerSelectors.basePackage("com.rjdb.rjdbauth"))
 				.build()
 				.apiInfo(apiDetails());

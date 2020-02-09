@@ -1,6 +1,5 @@
 package com.rjdb.rjdbauth.Repository;
 
-import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
